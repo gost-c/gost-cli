@@ -65,6 +65,7 @@ Usage:
 	gost register [options]
 
 Options:
+
 	-username=yourname, -u          Choose a username, length should > 6 and < 20
 	-password=yourpassword, -p      Choose a password, length should > 6
 
