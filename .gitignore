@@ -1,0 +1,6 @@
+*.test
+*.exe
+bin/*
+.idea/inspectionProfiles/
+.idea/**/**
+.idea
