@@ -2,8 +2,8 @@ package command
 
 import (
 	"github.com/zcong1993/utils"
-	"strings"
 	"io/ioutil"
+	"strings"
 )
 
 type LoginCommand struct {

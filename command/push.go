@@ -1,14 +1,14 @@
 package command
 
 import (
-	"strings"
-	"golang.org/x/sync/errgroup"
-	"io/ioutil"
 	"fmt"
-	"os"
-	"path"
 	"github.com/pkg/errors"
 	"github.com/zcong1993/utils"
+	"golang.org/x/sync/errgroup"
+	"io/ioutil"
+	"os"
+	"path"
+	"strings"
 )
 
 type PushCommand struct {
@@ -16,15 +16,15 @@ type PushCommand struct {
 }
 
 type Gist struct {
-	Public bool
+	Public      bool
 	Description string
-	Version uint
-	Files []File
+	Version     uint
+	Files       []File
 }
 
 type File struct {
 	Filename string
-	Content string
+	Content  string
 }
 
 func getFiles(files []string) ([]File, error) {

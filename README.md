@@ -1,6 +1,6 @@
 # gost-cli
 
-gost-cli is a command line tool for gost
+> gost-cli is a command line tool for gost
 
 ## Description
 
@@ -11,12 +11,12 @@ gost-cli is a command line tool for gost
 To install, use `go get`:
 
 ```bash
-$ go get -d github.com/zcong1993/gost-cli
+$ go get -d github.com/gost-c/gost-cli
 ```
 
 ## Contribution
 
-1. Fork ([https://github.com/zcong1993/gost-cli/fork](https://github.com/zcong1993/gost-cli/fork))
+1. Fork ([https://github.com/gost-c/gost-cli/fork](https://github.com/gost-c/gost-cli/fork))
 1. Create a feature branch
 1. Commit your changes
 1. Rebase your local changes against the master branch

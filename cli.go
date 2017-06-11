@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gost-c/gost-cli/command"
 	"github.com/mitchellh/cli"
-	"github.com/zcong1993/gost-cli/command"
 )
 
+// Run is default func created by gcli default
 func Run(args []string) int {
 
 	// Meta-option for executables.
@@ -26,6 +27,7 @@ func Run(args []string) int {
 	return RunCustom(args, Commands(meta))
 }
 
+// RunCustom is a func created by gcli default
 func RunCustom(args []string, commands map[string]cli.CommandFactory) int {
 
 	// Get the command line args. We shortcut "--version" and "-v" to

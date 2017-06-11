@@ -1,10 +1,11 @@
 package main
 
 import (
+	"github.com/gost-c/gost-cli/command"
 	"github.com/mitchellh/cli"
-	"github.com/zcong1993/gost-cli/command"
 )
 
+// Commands is a entry function to run sub commands
 func Commands(meta *command.Meta) map[string]cli.CommandFactory {
 	return map[string]cli.CommandFactory{
 		"register": func() (cli.Command, error) {

@@ -10,6 +10,7 @@ var BaseUrl = "http://localhost:8000/"
 var WebUrl = "http://localhost:3000/"
 
 const config = ".gostrc"
+
 var ConfigFile string
 
 func init() {
