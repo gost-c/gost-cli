@@ -5,20 +5,24 @@ import (
 	"strings"
 )
 
+// RegisterCommand is struct of register meta
 type RegisterCommand struct {
 	Meta
 }
 
+// User is struct of login api's post data
 type User struct {
 	Username string
 	Password string
 }
 
+// Result is struct of common api's response
 type Result struct {
 	Code string `decoder:"code"`
 	Msg  string `decoder:"msg"`
 }
 
+// Run is entry function of register command
 func (c *RegisterCommand) Run(args []string) int {
 	var username, password string
 	uflag := c.Meta.NewFlagSet("register", c.Help())
@@ -33,29 +37,31 @@ func (c *RegisterCommand) Run(args []string) int {
 		return 1
 	}
 	if username == "" || password == "" {
-		c.Ui.Error("Invalid options: Usage gost register -u=yourUsername -p=yourPassword")
+		c.UI.Error("Invalid options: Usage gost register -u=yourUsername -p=yourPassword")
 		return 1
 	}
-	url := BaseUrl + "register"
+	url := BaseURL + "register"
 	user := User{username, password}
 	var res Result
 	err := utils.PostJSON(url, user, &res, map[string]string{})
 	if err != nil {
-		c.Ui.Error("Unexpected error occurred, please try again")
+		c.UI.Error("Unexpected error occurred, please try again")
 		return 1
 	}
 	if res.Code != "200" {
-		c.Ui.Error(res.Msg)
+		c.UI.Error(res.Msg)
 		return 1
 	}
-	c.Ui.Info(res.Msg)
+	c.UI.Info(res.Msg)
 	return 0
 }
 
+// Synopsis is description of register command
 func (c *RegisterCommand) Synopsis() string {
 	return "Register a account"
 }
 
+// Help is help message of register command
 func (c *RegisterCommand) Help() string {
 	helpText := `
 Before using gost, you should register a account first.

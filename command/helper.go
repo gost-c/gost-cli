@@ -6,11 +6,15 @@ import (
 	"path"
 )
 
-var BaseUrl = "http://localhost:8000/"
-var WebUrl = "http://localhost:3000/"
+// BaseURL is the base url of gost api services
+var BaseURL = "http://localhost:8000/"
+
+// WebURL is the base url of gost web services
+var WebURL = "http://localhost:3000/"
 
 const config = ".gostrc"
 
+// ConfigFile is the true path of config file `.gostrc`
 var ConfigFile string
 
 func init() {

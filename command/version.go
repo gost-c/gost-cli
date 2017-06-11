@@ -5,6 +5,7 @@ import (
 	"fmt"
 )
 
+// VersionCommand is struct of version meta
 type VersionCommand struct {
 	Meta
 
@@ -13,6 +14,7 @@ type VersionCommand struct {
 	Revision string
 }
 
+// Run is entry function of version command
 func (c *VersionCommand) Run(args []string) int {
 	var versionString bytes.Buffer
 
@@ -21,14 +23,16 @@ func (c *VersionCommand) Run(args []string) int {
 		fmt.Fprintf(&versionString, " (%s)", c.Revision)
 	}
 
-	c.Ui.Output(versionString.String())
+	c.UI.Output(versionString.String())
 	return 0
 }
 
+// Synopsis is description of version command
 func (c *VersionCommand) Synopsis() string {
 	return fmt.Sprintf("Print %s version and quit", c.Name)
 }
 
+// Help is help message of version command
 func (c *VersionCommand) Help() string {
 	return ""
 }

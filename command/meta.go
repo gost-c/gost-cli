@@ -9,7 +9,7 @@ import (
 
 // Meta contain the meta-option that nearly all subcommand inherited.
 type Meta struct {
-	Ui cli.Ui
+	UI cli.Ui
 }
 
 // NewFlagSet generates commom flag.FlagSet
@@ -17,7 +17,7 @@ func (m *Meta) NewFlagSet(name string, helpText string) *flag.FlagSet {
 	flags := flag.NewFlagSet(name, flag.ContinueOnError)
 
 	// Set usage function
-	flags.Usage = func() { m.Ui.Error(helpText) }
+	flags.Usage = func() { m.UI.Error(helpText) }
 
 	// Set error output to Meta.UI.Error
 	errR, errW := io.Pipe()
@@ -26,7 +26,7 @@ func (m *Meta) NewFlagSet(name string, helpText string) *flag.FlagSet {
 
 	go func() {
 		for errScanner.Scan() {
-			m.Ui.Error(errScanner.Text())
+			m.UI.Error(errScanner.Text())
 		}
 	}()
 

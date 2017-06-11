@@ -11,10 +11,12 @@ import (
 	"strings"
 )
 
+// PushCommand is struct of push meta
 type PushCommand struct {
 	Meta
 }
 
+// Gist is struct of push api's post data
 type Gist struct {
 	Public      bool
 	Description string
@@ -22,6 +24,7 @@ type Gist struct {
 	Files       []File
 }
 
+// File is struct of gist's file
 type File struct {
 	Filename string
 	Content  string
@@ -49,6 +52,7 @@ func getFiles(files []string) ([]File, error) {
 	return results, nil
 }
 
+// Run is entry function of push command
 func (c *PushCommand) Run(args []string) int {
 	var public bool
 	var description string
@@ -66,39 +70,41 @@ func (c *PushCommand) Run(args []string) int {
 
 	parsedArgs := uflag.Args()
 	if len(parsedArgs) < 1 {
-		c.Ui.Error("Invalid argument: Usage glic push [options] FILE1 FILE2 ...")
+		c.UI.Error("Invalid argument: Usage glic push [options] FILE1 FILE2 ...")
 		return 1
 	}
 	files, err := getFiles(parsedArgs)
 	if err != nil {
-		c.Ui.Error(err.Error())
+		c.UI.Error(err.Error())
 		return 1
 	}
 	gist := Gist{public, description, 1, files}
-	url := BaseUrl + "api/create"
+	url := BaseURL + "api/create"
 	token, err := ioutil.ReadFile(ConfigFile)
 	if err != nil || string(token) == "" {
-		c.Ui.Error("Get token failed, please try login first")
+		c.UI.Error("Get token failed, please try login first")
 		return 1
 	}
 	var res Result
 	err = utils.PostJSON(url, gist, &res, map[string]string{"Authorization": "Bearer " + string(token)})
 	if err != nil {
-		c.Ui.Error("Unexpected error occurred, make sure you have logged in")
+		c.UI.Error("Unexpected error occurred, make sure you have logged in")
 		return 1
 	}
 	if res.Code != "200" {
-		c.Ui.Error(res.Msg)
+		c.UI.Error(res.Msg)
 		return 1
 	}
-	c.Ui.Info("Push success! The url is " + WebUrl + res.Msg)
+	c.UI.Info("Push success! The url is " + WebURL + res.Msg)
 	return 0
 }
 
+// Synopsis is description of push command
 func (c *PushCommand) Synopsis() string {
 	return "Push some doc to gost"
 }
 
+// Help is help message of push command
 func (c *PushCommand) Help() string {
 	helpText := `
 You can use gost push some doc online to share with friends quickly.

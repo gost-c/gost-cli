@@ -6,15 +6,18 @@ import (
 	"strings"
 )
 
+// LoginCommand is struct of login meta
 type LoginCommand struct {
 	Meta
 }
 
+// LoginResult is struct of login api's response
 type LoginResult struct {
 	Expire string `decoder:"expire"`
 	Token  string `decoder:"token"`
 }
 
+// Run is entry function of login command
 func (c *LoginCommand) Run(args []string) int {
 	var username, password string
 	uflag := c.Meta.NewFlagSet("login", c.Help())
@@ -29,35 +32,37 @@ func (c *LoginCommand) Run(args []string) int {
 		return 1
 	}
 	if username == "" || password == "" {
-		c.Ui.Error("Invalid options: Usage gost login -u=yourUsername -p=yourPassword")
+		c.UI.Error("Invalid options: Usage gost login -u=yourUsername -p=yourPassword")
 		return 1
 	}
 
-	url := BaseUrl + "login"
+	url := BaseURL + "login"
 	user := User{username, password}
 	var res LoginResult
 	err := utils.PostJSON(url, user, &res, map[string]string{})
 	if err != nil {
-		c.Ui.Error("Unexpected error occurred, please try again")
+		c.UI.Error("Unexpected error occurred, please try again")
 		return 1
 	}
 	if res.Token == "" {
-		c.Ui.Error("Username or password is wrong, please try again")
+		c.UI.Error("Username or password is wrong, please try again")
 		return 1
 	}
 	err = ioutil.WriteFile(ConfigFile, []byte(res.Token), 0644)
 	if err != nil {
-		c.Ui.Error("Unexpected error occurred when write config file")
+		c.UI.Error("Unexpected error occurred when write config file")
 		return 1
 	}
-	c.Ui.Info("Success! Now you can use `gost push`")
+	c.UI.Info("Success! Now you can use `gost push`")
 	return 0
 }
 
+// Synopsis is description of login command
 func (c *LoginCommand) Synopsis() string {
 	return "Login your account"
 }
 
+// Help is help message of login command
 func (c *LoginCommand) Help() string {
 	helpText := `
 Using gost need token, you can get it via login.
