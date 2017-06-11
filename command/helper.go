@@ -20,7 +20,7 @@ var ConfigFile string
 func init() {
 	home, err := homedir.Dir()
 	if err != nil {
-		log.Fatal("An error occured when get user home!")
+		log.Fatal("An error occurred when get user home!")
 	}
 	ConfigFile = path.Join(home, config)
 }
