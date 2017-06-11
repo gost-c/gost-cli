@@ -22,7 +22,7 @@ $ gost <sub command> -h
 
 ### Download directly (recommend)
 
-[Download](https://github.com/gost-c/gost/releases) the package (should match your platform) and move it to any `$PATH` folder.
+[Download](https://github.com/gost-c/gost-cli/releases) the package (should match your platform) and move it to any `$PATH` folder.
 
 ### To install, use `go get`:
 
