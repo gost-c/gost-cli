@@ -7,11 +7,24 @@
 
 ## Description
 
+`gost` is a gist-like services (see the sample [sample link](http://gost.surge.sh/#/7f6fbcc7-8a8b-443e-a88e-39f49c693215)), and `gost-cli` is a command tool for it.
+
 ## Usage
+
+```bash
+# show help
+$ gost -h
+# show sub command help, example gost login -h
+$ gost <sub command> -h
+```
 
 ## Install
 
-To install, use `go get`:
+### Download directly (recommend)
+
+[Download](https://github.com/gost-c/gost/releases) the package (should match your platform) and move it to any `$PATH` folder.
+
+### To install, use `go get`:
 
 ```bash
 $ go get -d github.com/gost-c/gost-cli
