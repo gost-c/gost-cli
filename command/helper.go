@@ -12,7 +12,7 @@ var BaseURL = "http://gost.congz.pw/"
 
 // WebURL is the base url of gost web services
 //var WebURL = "http://localhost:3000/"
-var WebURL = "http://gost.surge.sh/#/"
+var WebURL = "http://gost.surge.sh/#/gost/"
 
 const config = ".gostrc"
 
