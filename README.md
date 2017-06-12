@@ -30,6 +30,10 @@ $ gost <sub command> -h
 $ go get -d github.com/gost-c/gost-cli
 ```
 
+## Docs
+
+see [http://gost-docs.congz.pw](http://gost-docs.congz.pw)
+
 ## Contribution
 
 1. Fork ([https://github.com/gost-c/gost-cli/fork](https://github.com/gost-c/gost-cli/fork))
