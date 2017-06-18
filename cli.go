@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-
 	"github.com/gost-c/gost-cli/command"
 	"github.com/mitchellh/cli"
 )

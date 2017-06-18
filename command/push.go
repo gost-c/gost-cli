@@ -70,7 +70,7 @@ func (c *PushCommand) Run(args []string) int {
 
 	parsedArgs := uflag.Args()
 	if len(parsedArgs) < 1 {
-		c.UI.Error("Invalid argument: Usage glic push [options] FILE1 FILE2 ...")
+		c.UI.Error("Invalid argument: Usage gost push [options] FILE1 FILE2 ...")
 		return 1
 	}
 	files, err := getFiles(parsedArgs)

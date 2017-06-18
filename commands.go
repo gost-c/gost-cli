@@ -23,6 +23,11 @@ func Commands(meta *command.Meta) map[string]cli.CommandFactory {
 				Meta: *meta,
 			}, nil
 		},
+		"delete": func() (cli.Command, error) {
+			return &command.DeleteCommand{
+				Meta: *meta,
+			}, nil
+		},
 
 		"version": func() (cli.Command, error) {
 			return &command.VersionCommand{
