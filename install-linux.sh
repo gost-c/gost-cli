@@ -58,4 +58,4 @@ fi
 
 # finished
 log install finished
-printf "\nopen a new terminal and try it.\n"
+printf "\nDone!, enjoy it.\n"
