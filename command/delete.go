@@ -1,9 +1,9 @@
 package command
 
 import (
-	"strings"
 	"github.com/zcong1993/utils"
 	"io/ioutil"
+	"strings"
 )
 
 // DeleteCommand is struct of delete meta

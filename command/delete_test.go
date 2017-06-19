@@ -1,8 +1,8 @@
 package command
 
 import (
-	"testing"
 	"github.com/mitchellh/cli"
+	"testing"
 )
 
 func TestDeleteCommand_implement(t *testing.T) {

@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"github.com/gost-c/gost-cli/command"
 	"github.com/mitchellh/cli"
+	"os"
 )
 
 // Run is default func created by gcli default
