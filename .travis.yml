@@ -8,4 +8,5 @@ install:
   - go get -v github.com/mitchellh/gox
 
 script:
+  - chmod +x ./build.sh
   - make build
