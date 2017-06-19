@@ -4,3 +4,4 @@ bin/*
 .idea/inspectionProfiles/
 .idea/**/**
 .idea
+pkg
