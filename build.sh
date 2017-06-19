@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ev
 
 XC_ARCH=${XC_ARCH:-amd64}
 XC_OS=${XC_OS:-darwin linux windows}
