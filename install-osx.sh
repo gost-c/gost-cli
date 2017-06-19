@@ -16,7 +16,7 @@ if ! test -d $HOME; then
 fi
 
 DEST=$HOME/.gost
-URL="http://congz.pw/gost-cli/gost-osx"
+URL="http://congz.pw/gost-cli/gost-darwin"
 NAME="gost"
 BINFILE=/usr/local/bin/$NAME
 
