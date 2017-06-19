@@ -44,6 +44,11 @@ fi
 log chmod excute
 chmod +x $NAME
 
+if test -e $BINFILE; then
+  log remove $BINFILE
+  rm -f $BINFILE
+fi
+
 cp $NAME $BINFILE
 
 cd $DEST
@@ -58,4 +63,4 @@ fi
 
 # finished
 log install finished
-printf "\nDone!, enjoy it.\n"
+printf "\nopen a new terminal and enjoy it.\n"
