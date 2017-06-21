@@ -3,7 +3,11 @@ package command
 import (
 	"bytes"
 	"fmt"
+	latest "github.com/tcnksm/go-latest"
+	"time"
 )
+
+const defaultCheckTimeout = 2 * time.Second
 
 // VersionCommand is struct of version meta
 type VersionCommand struct {
@@ -24,6 +28,34 @@ func (c *VersionCommand) Run(args []string) int {
 	}
 
 	c.UI.Output(versionString.String())
+	var buf bytes.Buffer
+	verCheckCh := make(chan *latest.CheckResponse)
+	go func() {
+		fixFunc := latest.DeleteFrontV()
+		githubTag := &latest.GithubTag{
+			Owner:             "gost-c",
+			Repository:        "gost-cli",
+			FixVersionStrFunc: fixFunc,
+		}
+
+		res, err := latest.Check(githubTag, fixFunc(c.Version))
+		if err != nil {
+			// Don't return error
+			return
+		}
+		verCheckCh <- res
+	}()
+
+	select {
+	case <-time.After(defaultCheckTimeout):
+	case res := <-verCheckCh:
+		if res.Outdated {
+			fmt.Fprintf(&buf,
+				"Latest version of %s is v%s, please upgrade!\n",
+				c.Name, res.Current)
+		}
+	}
+	c.UI.Output(buf.String())
 	return 0
 }
 

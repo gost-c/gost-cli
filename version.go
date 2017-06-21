@@ -4,7 +4,7 @@ package main
 const Name string = "gost-cli"
 
 // Version is cli's current version
-const Version string = "1.1.0"
+const Version string = "v1.2.0"
 
 // GitCommit describes latest commit hash.
 // This value is extracted by git command when building.
