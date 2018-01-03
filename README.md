@@ -1,7 +1,7 @@
 # gost-cli
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/gost-c/gost-cli)](https://goreportcard.com/report/github.com/gost-c/gost-cli)
-[![Build Status](https://travis-ci.org/gost-c/gost-cli.svg?branch=master)](https://travis-ci.org/gost-c/gost-cli)
+[![CircleCI](https://circleci.com/gh/gost-c/gost-cli/tree/master.svg?style=shield)](https://circleci.com/gh/gost-c/gost-cli/tree/master)
 
 > gost-cli is a command line tool for gost
 
