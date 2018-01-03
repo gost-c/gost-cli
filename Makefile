@@ -6,9 +6,10 @@ build:
 .PHONY: build
 
 install.dev:
-	@$(GO) get github.com/golang/dep/cmd/dep
-	@$(GO) get github.com/goreleaser/goreleaser
+	@$(GO) get -u github.com/golang/dep/cmd/dep
+	@$(GO) get -u github.com/goreleaser/goreleaser
 	@dep ensure
+	@git reset --hard HEAD
 .PHONY: install.dev
 
 release:
