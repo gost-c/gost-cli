@@ -1,0 +1,27 @@
+builds:
+  - main: main.go
+    binary: gost
+    ldflags: -s -w -X main.GitCommit={{.Commit}} -X main.Date={{.Date}}
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+# Archive customization
+archive:
+  format: tar.gz
+  replacements:
+    amd64: 64-bit
+    darwin: macOS
+    linux: Tux
+  files:
+    - LICENSE
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^refactor'
+      - '^tweak'
+      - '^test'

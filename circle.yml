@@ -1,0 +1,49 @@
+version: 2.0
+
+jobs:
+  build:
+    docker:
+      # CircleCI Go images available at: https://hub.docker.com/r/circleci/golang/
+      - image: circleci/golang:1.9
+
+    working_directory: /go/src/github.com/zcong1993/gen
+
+    steps:
+      - checkout
+      - run:
+          name: get deps
+          command: make install.dev
+      - run:
+          name: build
+          command: make build
+  release:
+      docker:
+        # CircleCI Go images available at: https://hub.docker.com/r/circleci/golang/
+        - image: circleci/golang:1.9
+
+      working_directory: /go/src/github.com/zcong1993/gen
+
+      steps:
+        - checkout
+        - run:
+            name: get deps
+            command: make install.dev
+        - run:
+            name: build
+            command: make release
+
+workflows:
+  version: 2
+  build-n-deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
+      - release:
+          context: org-global
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
