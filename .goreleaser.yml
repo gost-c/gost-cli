@@ -1,5 +1,5 @@
 builds:
-  - main: main.go
+  - main: "*.go"
     binary: gost
     ldflags: -s -w -X main.GitCommit={{.Commit}} -X main.Date={{.Date}}
     goos:
