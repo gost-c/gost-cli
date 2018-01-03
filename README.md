@@ -20,6 +20,12 @@ $ gost <sub command> -h
 
 ## Install
 
+### Use scripts
+
+```sh
+$ curl -sf https://raw.githubusercontent.com/gost-c/gost-cli/master/install.sh | sh
+```
+
 ### Download directly (recommend)
 
 [Download](https://github.com/gost-c/gost-cli/releases) the package (should match your platform) and move it to any `$PATH` folder.
