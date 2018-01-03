@@ -30,3 +30,5 @@ bin
 .env
 
 vendor
+
+dist
