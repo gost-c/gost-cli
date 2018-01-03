@@ -1,7 +1,7 @@
 builds:
   - main: main.go
     binary: gost
-    ldflags: -s -w -X main.GitCommit={{.Commit}} -X main.Date={{.Date}}
+    ldflags: -s -w -X github.com/gost-c/gost-cli/command.GitCommit={{.Commit}}
     goos:
       - windows
       - darwin

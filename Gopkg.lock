@@ -15,18 +15,6 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/google/go-github"
-  packages = ["github"]
-  revision = "fc3c57184028a80ff3979d912cdaf5f08887f98a"
-
-[[projects]]
-  branch = "master"
-  name = "github.com/google/go-querystring"
-  packages = ["query"]
-  revision = "53e6ce116135b80d037921a7fdd5138cf32d7a8a"
-
-[[projects]]
-  branch = "master"
   name = "github.com/hashicorp/errwrap"
   packages = ["."]
   revision = "7554cd9344cec97297fa6649b055a8c98c2a1e55"
@@ -36,12 +24,6 @@
   name = "github.com/hashicorp/go-multierror"
   packages = ["."]
   revision = "b7773ae218740a7be65057fc60b366a49b538a44"
-
-[[projects]]
-  branch = "master"
-  name = "github.com/hashicorp/go-version"
-  packages = ["."]
-  revision = "4fe82ae3040f80a03d04d2cccb5606a626b8e1ee"
 
 [[projects]]
   name = "github.com/mattn/go-isatty"
@@ -69,15 +51,14 @@
 
 [[projects]]
   name = "github.com/posener/complete"
-  packages = [".","cmd","cmd/install","match"]
+  packages = [
+    ".",
+    "cmd",
+    "cmd/install",
+    "match"
+  ]
   revision = "dc2bc5a81accba8782bebea28628224643a8286a"
   version = "v1.1"
-
-[[projects]]
-  name = "github.com/tcnksm/go-latest"
-  packages = ["."]
-  revision = "86500ab1363a867dafe16905b5b85293a0d838eb"
-  version = "0.1.1"
 
 [[projects]]
   branch = "master"
@@ -88,7 +69,7 @@
 [[projects]]
   branch = "master"
   name = "golang.org/x/net"
-  packages = ["context","html","html/atom"]
+  packages = ["context"]
   revision = "d866cfc389cec985d6fda2859936a575a55a3ab6"
 
 [[projects]]
@@ -106,6 +87,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "12ef7c3059170acff9c180729f1e183fc76b13d3ba943907cf63820a548ac9b8"
+  inputs-digest = "fb57cc78d60d77c8eb0074f93708217d9f1c089f7a0a3f96b01d495f8d1abbfd"
   solver-name = "gps-cdcl"
   solver-version = 1
