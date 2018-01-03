@@ -1,4 +1,4 @@
-package main
+package cli
 
 // Name is cli's name
 const Name string = "gost-cli"

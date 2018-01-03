@@ -1,7 +1,11 @@
 package main
 
-import "os"
+import (
+	"os"
+
+	"github.com/gost-c/gost-cli/cli"
+)
 
 func main() {
-	os.Exit(Run(os.Args[1:]))
+	os.Exit(cli.Run(os.Args[1:]))
 }
