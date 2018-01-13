@@ -8,7 +8,7 @@ import (
 const Name = "gost"
 
 // Version is cli's current version
-const Version = "v1.2.1"
+const Version = "v1.2.2"
 
 // GitCommit describes latest commit hash.
 // This value is extracted by git command when building.
