@@ -1,9 +1,9 @@
 package login
 
 import (
+	"fmt"
 	"github.com/gost-c/gost-cli/commands"
 	"github.com/gost-c/gost-cli/utils"
-	log "github.com/sirupsen/logrus"
 	u "github.com/zcong1993/utils"
 )
 
@@ -24,18 +24,21 @@ func Run(username, password string) {
 	err := u.PostJSON(url, user, &res, map[string]string{})
 
 	if err != nil {
-		log.Fatalf("Login error: %s, please try again.", err.Error())
+		utils.Fail(fmt.Sprintf("Login error: %s, please try again.", err.Error()))
+		return
 	}
 
 	if res.Token == "" {
-		log.Fatal("Username or password is wrong, please try again")
+		utils.Fail("Username or password is wrong, please try again")
+		return
 	}
 
 	err = utils.WriteConfig([]byte(res.Token))
 
 	if err != nil {
-		log.Fatalf("Unexpected error occurred when write config file: %s", err.Error())
+		utils.Fail(fmt.Sprintf("Unexpected error occurred when write config file: %s", err.Error()))
+		return
 	}
 
-	log.Info("Success! Now you can use `gost push`")
+	utils.Success("Login success. Now you can use `gost push`")
 }

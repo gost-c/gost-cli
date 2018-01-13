@@ -2,10 +2,10 @@ package push
 
 import (
 	"fmt"
+	"github.com/gost-c/gost-cli/colors"
 	"github.com/gost-c/gost-cli/commands"
 	"github.com/gost-c/gost-cli/utils"
 	"github.com/pkg/errors"
-	log "github.com/sirupsen/logrus"
 	u "github.com/zcong1993/utils"
 	"golang.org/x/sync/errgroup"
 	"io/ioutil"
@@ -33,25 +33,28 @@ type File struct {
 func Run(files []string, description string) {
 	f, err := getFiles(files)
 	if err != nil {
-		log.Fatalf("parse files error: %v", err)
+		utils.Fail(fmt.Sprintf("parse files error: %v", err))
+		return
 	}
 	gist := Gist{Public: true, Description: description, Files: f, Version: 1}
 	token, err := utils.ReadConfig()
 	if err != nil || token == nil {
-		log.Fatal("Get token failed, please login first")
+		utils.Fail("Get token failed, please login first")
+		return
 	}
 
 	var res commands.Result
 	err = u.PostJSON(url, gist, &res, map[string]string{"Authorization": "Bearer " + string(token)})
 	if err != nil {
-		log.Fatalf("Unexpected error occurred: %s, make sure you have logged in", err.Error())
+		utils.Fail(fmt.Sprintf("Unexpected error occurred: %s, make sure you have logged in", err.Error()))
+		return
 	}
 
 	if res.Code != "200" {
-		log.Fatalf("Push error: %s", res.Msg)
+		utils.Fail(fmt.Sprintf("Push error: %s", res.Msg))
+		return
 	}
-
-	log.Infof("Push success! The url is %s%s", utils.WebURL, res.Msg)
+	utils.Success(fmt.Sprintf("Push success! The url is %s", colors.Yellow(utils.WebURL+res.Msg)))
 }
 
 func getFiles(files []string) ([]File, error) {

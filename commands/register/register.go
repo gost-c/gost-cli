@@ -1,9 +1,9 @@
 package register
 
 import (
+	"fmt"
 	"github.com/gost-c/gost-cli/commands"
 	"github.com/gost-c/gost-cli/utils"
-	log "github.com/sirupsen/logrus"
 	u "github.com/zcong1993/utils"
 )
 
@@ -18,12 +18,14 @@ func Run(username, password string) {
 	err := u.PostJSON(url, user, &res, map[string]string{})
 
 	if err != nil {
-		log.Fatalf("Register error: %s", err.Error())
+		utils.Fail(fmt.Sprintf("Register error: %s", err.Error()))
+		return
 	}
 
 	if res.Code != "200" {
-		log.Fatalf("Register error: %s", res.Msg)
+		utils.Fail(fmt.Sprintf("Register error: %s", res.Msg))
+		return
 	}
 
-	log.Info(res.Msg)
+	utils.Success(res.Msg)
 }

@@ -1,8 +1,8 @@
 GO ?= go
 
 build:
-	@echo "====> Build gen"
-	@goreleaser --skip-publish --rm-dist --snapshot
+	@echo "====> Build gost"
+	@$(GO) build -o bin/gost main.go
 .PHONY: build
 
 install.dev:

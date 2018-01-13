@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/gost-c/gost-cli/colors"
 	del "github.com/gost-c/gost-cli/commands/delete"
 	"github.com/gost-c/gost-cli/commands/login"
 	"github.com/gost-c/gost-cli/commands/push"
@@ -56,9 +57,9 @@ func main() {
 }
 
 func showVersion() {
-	version := fmt.Sprintf("\n%s version %s", app.Name, Version)
+	version := fmt.Sprintf("\n%s version %s", colors.Cyan(app.Name), colors.Purple(Version))
 	if len(GitCommit) != 0 {
-		version += fmt.Sprintf(" (%s)", GitCommit)
+		version += colors.Gray(fmt.Sprintf(" (%s)", GitCommit))
 	}
 	fmt.Println(version)
 }
