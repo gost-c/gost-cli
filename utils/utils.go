@@ -45,10 +45,12 @@ func ReadConfig() ([]byte, error) {
 func Success(str string) {
 	fmt.Println()
 	fmt.Printf("%s%s%s", colors.Green("SUCCESS"), space, str)
+	fmt.Println()
 }
 
 // Fail log error message with colors
 func Fail(str string) {
 	fmt.Println()
 	fmt.Printf("%s%s%s", colors.Red("ERROR"), space, str)
+	fmt.Println()
 }

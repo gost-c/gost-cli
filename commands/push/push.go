@@ -7,9 +7,7 @@ import (
 	"github.com/gost-c/gost-cli/utils"
 	"github.com/pkg/errors"
 	u "github.com/zcong1993/utils"
-	"golang.org/x/sync/errgroup"
 	"io/ioutil"
-	"os"
 	"path"
 )
 
@@ -58,23 +56,15 @@ func Run(files []string, description string) {
 }
 
 func getFiles(files []string) ([]File, error) {
-	eg := errgroup.Group{}
 	var results []File
 	for _, file := range files {
-		file := file
-		eg.Go(func() error {
-			content, err := ioutil.ReadFile(file)
-			fmt.Fprintf(os.Stdout, "--> Parsing file: %15s\n", file)
-			if err != nil {
-				return errors.Wrapf(err,
-					"failed to get file content: %s", file)
-			}
-			results = append(results, File{path.Base(file), string(content)})
-			return nil
-		})
-	}
-	if err := eg.Wait(); err != nil {
-		return nil, errors.Wrap(err, "one of the goroutines failed")
+		content, err := ioutil.ReadFile(file)
+		fmt.Printf("%s Reading file: %15s\n", colors.Blue("-->"), colors.Cyan(file))
+		if err != nil {
+			return nil, errors.Wrapf(err,
+				"failed to get file content: %s", file)
+		}
+		results = append(results, File{path.Base(file), string(content)})
 	}
 	return results, nil
 }
