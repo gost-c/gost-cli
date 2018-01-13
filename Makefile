@@ -2,7 +2,7 @@ GO ?= go
 
 build:
 	@echo "====> Build gost"
-	@$(GO) build -o bin/gost main.go
+	@goreleaser --skip-publish --rm-dist --snapshot
 .PHONY: build
 
 install.dev:
