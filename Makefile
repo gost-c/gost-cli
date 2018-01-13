@@ -8,7 +8,7 @@ build:
 install.dev:
 	@$(GO) get -u github.com/golang/dep/cmd/dep
 	@$(GO) get -u github.com/goreleaser/goreleaser
-	@dep ensure
+	@dep ensure -vendor-only
 .PHONY: install.dev
 
 release:
