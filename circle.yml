@@ -6,7 +6,7 @@ jobs:
       # CircleCI Go images available at: https://hub.docker.com/r/circleci/golang/
       - image: circleci/golang:1.9
 
-    working_directory: /go/src/github.com/zcong1993/gen
+    working_directory: /go/src/github.com/gost-c/gost-cli
 
     steps:
       - checkout
@@ -21,7 +21,7 @@ jobs:
         # CircleCI Go images available at: https://hub.docker.com/r/circleci/golang/
         - image: circleci/golang:1.9
 
-      working_directory: /go/src/github.com/zcong1993/gen
+      working_directory: /go/src/github.com/gost-c/gost-cli
 
       steps:
         - checkout
