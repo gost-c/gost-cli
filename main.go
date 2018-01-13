@@ -18,8 +18,6 @@ var (
 	GitCommit = ""
 )
 
-var App = kingpin.New("gost", "Command line tool for gost.")
-
 var (
 	app = kingpin.New("gost", "Command line tool for gost.")
 
