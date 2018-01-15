@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"github.com/gost-c/gost-cli/commands"
 	"github.com/gost-c/gost-cli/utils"
-	u "github.com/zcong1993/utils"
+	"net/http"
 )
 
-var url = utils.BaseURL + "api/delete/"
+var url = utils.BaseURL + "api/gost/"
 
 // Run is sub command runner for register
 func Run(id string) {
@@ -18,16 +18,16 @@ func Run(id string) {
 	}
 	url += id
 	var res commands.Result
-	err = u.GetJSONWithHeaders(url, &res, map[string]string{"Authorization": "Bearer " + string(token)})
+	err = utils.DoRequest(http.MethodDelete, url, &res, map[string]string{"Authorization": "Bearer " + string(token)})
 	if err != nil {
 		utils.Fail(fmt.Sprintf("Unexpected error occurred: %s, make sure you have logged in", err.Error()))
 		return
 	}
 
-	if res.Code != "200" {
-		utils.Fail(fmt.Sprintf("Delete error: %s", res.Msg))
+	if !res.Success {
+		utils.Fail(fmt.Sprintf("Delete error: %s", res.Message))
 		return
 	}
 
-	utils.Success(res.Msg)
+	utils.Success(res.Data.(string))
 }

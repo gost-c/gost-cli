@@ -1,20 +1,25 @@
 package utils
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gost-c/gost-cli/colors"
 	"github.com/mitchellh/go-homedir"
 	"io/ioutil"
+	"net/http"
 	"os"
 	"path"
+	"strings"
 )
 
 var (
 	// BaseURL is the base url of gost api services
-	BaseURL = "http://gost.congz.pw/"
+	BaseURL = "https://iuao0sjxmi.execute-api.ap-southeast-1.amazonaws.com/development/"
+	//BaseURL = "http://localhost:9393/"
 	// WebURL is the base url of gost web services
-	WebURL = "http://gost.zcong.moe/#/gost/"
-	space  = "  "
+	WebURL = "https://gost.zcong.moe/#/gost/"
+	//WebURL = "http://localhost:3000/#/gost/"
+	space = "  "
 )
 
 // ConfigFile is the true path of config file `.gostrc`
@@ -53,4 +58,23 @@ func Fail(str string) {
 	fmt.Println()
 	fmt.Printf("%s%s%s", colors.Red("ERROR"), space, str)
 	fmt.Println()
+}
+
+// DoRequest do a http request and decode the json response
+func DoRequest(method, url string, v interface{}, headers map[string]string) error {
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, strings.NewReader(""))
+	if err != nil {
+		return err
+	}
+	for k, v := range headers {
+		req.Header.Set(k, v)
+	}
+	resp, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+	err = json.NewDecoder(resp.Body).Decode(v)
+	return err
 }

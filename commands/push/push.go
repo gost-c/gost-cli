@@ -11,13 +11,12 @@ import (
 	"path"
 )
 
-var url = utils.BaseURL + "api/create"
+var url = utils.BaseURL + "api/gost"
 
-// Gist is struct of push api's post data
-type Gist struct {
+// Gost is struct of push api's post data
+type Gost struct {
 	Public      bool
 	Description string
-	Version     uint
 	Files       []File
 }
 
@@ -34,7 +33,7 @@ func Run(files []string, description string) {
 		utils.Fail(fmt.Sprintf("parse files error: %v", err))
 		return
 	}
-	gist := Gist{Public: true, Description: description, Files: f, Version: 1}
+	gist := Gost{Public: true, Description: description, Files: f}
 	token, err := utils.ReadConfig()
 	if err != nil || token == nil {
 		utils.Fail("Get token failed, please login first")
@@ -48,11 +47,11 @@ func Run(files []string, description string) {
 		return
 	}
 
-	if res.Code != "200" {
-		utils.Fail(fmt.Sprintf("Push error: %s", res.Msg))
+	if !res.Success {
+		utils.Fail(fmt.Sprintf("Push error: %s", res.Message))
 		return
 	}
-	utils.Success(fmt.Sprintf("Push success! The url is %s", colors.Yellow(utils.WebURL+res.Msg)))
+	utils.Success(fmt.Sprintf("Push success! The url is %s", colors.Yellow(utils.WebURL+res.Data.(string))))
 }
 
 func getFiles(files []string) ([]File, error) {

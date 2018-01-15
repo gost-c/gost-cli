@@ -7,7 +7,7 @@ import (
 	u "github.com/zcong1993/utils"
 )
 
-var url = utils.BaseURL + "register"
+var url = utils.BaseURL + "api/register"
 
 // Run is sub command runner for register
 func Run(username, password string) {
@@ -22,10 +22,10 @@ func Run(username, password string) {
 		return
 	}
 
-	if res.Code != "200" {
-		utils.Fail(fmt.Sprintf("Register error: %s", res.Msg))
+	if !res.Success {
+		utils.Fail(fmt.Sprintf("Register error: %s", res.Message))
 		return
 	}
 
-	utils.Success(res.Msg)
+	utils.Success(res.Data.(string))
 }
