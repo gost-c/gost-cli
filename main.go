@@ -13,7 +13,7 @@ import (
 
 var (
 	// Version is app version
-	Version = "v2.0.0"
+	Version = "v3.0.0"
 	// GitCommit is commit hash for version
 	GitCommit = ""
 )
