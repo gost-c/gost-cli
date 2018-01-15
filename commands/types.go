@@ -2,12 +2,13 @@ package commands
 
 // User is struct of login api's post data
 type User struct {
-	Username string
-	Password string
+	Username string `json:"username"`
+	Password string `json:"password"`
 }
 
 // Result is struct of common api's response
 type Result struct {
-	Code string `decoder:"code"`
-	Msg  string `decoder:"msg"`
+	Success bool
+	Message string
+	Data    interface{}
 }
