@@ -33,7 +33,12 @@ func Run(files []string, description string) {
 		utils.Fail(fmt.Sprintf("Parse files error: %s", colors.Red(err.Error())))
 		return
 	}
-	gist := Gost{Public: true, Description: description, Files: f}
+	PushGost(f, description)
+}
+
+// PushGost make actully post request
+func PushGost(f []File, description string) {
+	gost := Gost{Public: true, Description: description, Files: f}
 	token, err := utils.ReadConfig()
 	if err != nil || token == nil {
 		utils.Fail("Get token failed, please login first")
@@ -41,7 +46,7 @@ func Run(files []string, description string) {
 	}
 
 	var res commands.Result
-	err = u.PostJSON(url, gist, &res, map[string]string{"Authorization": "Bearer " + string(token)})
+	err = u.PostJSON(url, gost, &res, map[string]string{"Authorization": "Bearer " + string(token)})
 	if err != nil {
 		utils.Fail(fmt.Sprintf("Unexpected error occurred: %s, make sure you have logged in", err.Error()))
 		return
