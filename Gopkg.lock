@@ -4,7 +4,10 @@
 [[projects]]
   branch = "master"
   name = "github.com/alecthomas/template"
-  packages = [".","parse"]
+  packages = [
+    ".",
+    "parse"
+  ]
   revision = "a0175ee3bccc567396460bf5acd36800cb10c49c"
 
 [[projects]]
@@ -18,6 +21,12 @@
   name = "github.com/aybabtme/rgbterm"
   packages = ["."]
   revision = "cc83f3b3ce5911279513a46d6d3316d67bedaa54"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/dustin/go-humanize"
+  packages = ["."]
+  revision = "bb3d318650d48840a39aa21a027c6630e198e626"
 
 [[projects]]
   branch = "master"
@@ -46,6 +55,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5022c74cfbdefbefe1cc3f711bcf74a4778f1bd210e649ed364a58fc69ffad77"
+  inputs-digest = "43f4b3a9750c0988561f235d864a3902fa76f5d5883f66dc5b43d7d9a483cf28"
   solver-name = "gps-cdcl"
   solver-version = 1

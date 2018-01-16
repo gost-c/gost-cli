@@ -57,6 +57,15 @@ func Run(files []string, description string) {
 func getFiles(files []string) ([]File, error) {
 	var results []File
 	for _, file := range files {
+		ps := utils.GetPathStat(file)
+		if ps.Error != nil {
+			fmt.Printf("%s Skip : %15s : %15s\n", colors.Blue("-->"), colors.Cyan(file), colors.Red(ps.Error.Error()))
+			continue
+		}
+		if ps.IsFolder {
+			fmt.Printf("%s Skip folder: %15s\n", colors.Blue("-->"), colors.Cyan(file))
+			continue
+		}
 		content, err := ioutil.ReadFile(file)
 		fmt.Printf("%s Reading file: %15s\n", colors.Blue("-->"), colors.Cyan(file))
 		if err != nil {
