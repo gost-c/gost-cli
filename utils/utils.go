@@ -23,6 +23,10 @@ var (
 	MaxSize = int64(1024 * 10)
 	// MaxSizeHuman is max size for human
 	MaxSizeHuman = humanize.Bytes(uint64(MaxSize))
+	// MaxFilesCount is max files count allowed
+	MaxFilesCount = 10
+	// ErrMaxFilesCount is error message for too many files
+	ErrMaxFilesCount = fmt.Errorf("More than %d files is not allowed ", MaxFilesCount)
 )
 
 // PathStat is file stat

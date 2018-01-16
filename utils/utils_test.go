@@ -6,5 +6,5 @@ import (
 )
 
 func TestFileOrFolder(t *testing.T) {
-	t.Log(utils.FileOrFolder("../circle.yml"))
+	t.Log(utils.GetPathStat("../circle.yml"))
 }
