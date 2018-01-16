@@ -14,7 +14,7 @@ import (
 
 var (
 	// Version is app version
-	Version = "v3.0.2"
+	Version = "v3.1.0"
 	// GitCommit is commit hash for version
 	GitCommit = ""
 )
@@ -37,6 +37,7 @@ var (
 	folderCmd         = app.Command("folder", "Push folders to gost.")
 	folderF           = folderCmd.Arg("folders", "Push folders.").Required().String()
 	folderDescription = folderCmd.Flag("description", "Add some description").Short('d').Default("Published by zcong1993/gost.").String()
+	notIgnoreHidden   = folderCmd.Flag("not-ignore-hidden", "Not ignore hidden folder").Short('n').Bool()
 
 	deleteCmd = app.Command("delete", "Delete a gost you published.")
 	id        = deleteCmd.Arg("id", "Gost id you want to delete.").Required().String()
@@ -53,7 +54,7 @@ func main() {
 	case pushCmd.FullCommand():
 		push.Run(*pushFiles, *description)
 	case folderCmd.FullCommand():
-		folder.Run(*folderF, *folderDescription)
+		folder.Run(*folderF, *folderDescription, *notIgnoreHidden)
 	case deleteCmd.FullCommand():
 		del.Run(*id)
 	case version.FullCommand():
