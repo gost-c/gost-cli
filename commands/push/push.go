@@ -30,7 +30,7 @@ type File struct {
 func Run(files []string, description string) {
 	f, err := getFiles(files)
 	if err != nil {
-		utils.Fail(fmt.Sprintf("parse files error: %v", err))
+		utils.Fail(fmt.Sprintf("Parse files error: %s", colors.Red(err.Error())))
 		return
 	}
 	gist := Gost{Public: true, Description: description, Files: f}
@@ -56,6 +56,7 @@ func Run(files []string, description string) {
 
 func getFiles(files []string) ([]File, error) {
 	var results []File
+	count := 0
 	for _, file := range files {
 		ps := utils.GetPathStat(file)
 		if ps.Error != nil {
@@ -71,6 +72,12 @@ func getFiles(files []string) ([]File, error) {
 		if err != nil {
 			return nil, errors.Wrapf(err,
 				"failed to get file content: %s", file)
+		}
+
+		count++
+
+		if count > utils.MaxFilesCount {
+			return nil, utils.ErrMaxFilesCount
 		}
 		results = append(results, File{path.Base(file), string(content)})
 	}
