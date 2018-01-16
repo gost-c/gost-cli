@@ -58,11 +58,11 @@ func GetFiles(path string) ([]push.File, error) {
 }
 
 func isHiddenPath(p string) bool {
-	if p == "." || p == "./" {
-		return false
-	}
 	arr := strings.Split(p, "/")
 	for _, v := range arr {
+		if v == "." || v == ".." || v == "" {
+			continue
+		}
 		if v[:1] == "." {
 			return true
 		}
