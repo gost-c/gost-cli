@@ -15,7 +15,9 @@ import (
 
 var (
 	// BaseURL is the base url of gost api services
-	BaseURL = "https://iuao0sjxmi.execute-api.ap-southeast-1.amazonaws.com/development/"
+	//BaseURL = "https://iuao0sjxmi.execute-api.ap-southeast-1.amazonaws.com/development/"
+	BaseURL = "http://localhost:9393/"
+
 	// WebURL is the base url of gost web services
 	WebURL = "https://gost.zcong.moe/#/gost/"
 	space  = "  "

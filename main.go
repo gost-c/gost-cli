@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gost-c/gost-cli/colors"
 	del "github.com/gost-c/gost-cli/commands/delete"
+	"github.com/gost-c/gost-cli/commands/folder"
 	"github.com/gost-c/gost-cli/commands/login"
 	"github.com/gost-c/gost-cli/commands/push"
 	"github.com/gost-c/gost-cli/commands/register"
@@ -33,6 +34,10 @@ var (
 	pushFiles   = pushCmd.Arg("files", "Push files.").Required().Strings()
 	description = pushCmd.Flag("description", "Add some description").Short('d').Default("Published by zcong1993/gost.").String()
 
+	folderCmd         = app.Command("folder", "Push folders to gost.")
+	folderF           = folderCmd.Arg("folders", "Push folders.").Required().String()
+	folderDescription = folderCmd.Flag("description", "Add some description").Short('d').Default("Published by zcong1993/gost.").String()
+
 	deleteCmd = app.Command("delete", "Delete a gost you published.")
 	id        = deleteCmd.Arg("id", "Gost id you want to delete.").Required().String()
 
@@ -47,6 +52,8 @@ func main() {
 		login.Run(*loginUsername, *loginPassword)
 	case pushCmd.FullCommand():
 		push.Run(*pushFiles, *description)
+	case folderCmd.FullCommand():
+		folder.Run(*folderF, *folderDescription)
 	case deleteCmd.FullCommand():
 		del.Run(*id)
 	case version.FullCommand():
