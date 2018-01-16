@@ -33,21 +33,22 @@ func GetFiles(path string, notIgnoreFolder bool) ([]push.File, error) {
 			}
 			fmt.Printf("%s Parse folder: %15s\n", colors.Blue("-->"), colors.Purple(path))
 			return nil
-		} else {
-			if len(fs) > utils.MaxFilesCount {
-				return utils.ErrMaxFilesCount
-			}
-			fmt.Printf("%s Reading file: %15s\n", colors.Blue("-->"), colors.Cyan(path))
-			content, err := ioutil.ReadFile(path)
-			if err != nil {
-				return err
-			}
-			f := push.File{
-				Filename: path,
-				Content:  string(content),
-			}
-			fs = append(fs, f)
 		}
+		if len(fs) > utils.MaxFilesCount {
+			return utils.ErrMaxFilesCount
+		}
+		fmt.Printf("%s Reading file: %15s\n", colors.Blue("-->"), colors.Cyan(path))
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			return err
+		}
+		f := push.File{
+			Filename: path,
+			Content:  string(content),
+		}
+
+		fs = append(fs, f)
+
 		return nil
 	})
 	if err != nil {
