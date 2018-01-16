@@ -2,7 +2,6 @@ package utils
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"github.com/dustin/go-humanize"
 	"github.com/gost-c/gost-cli/colors"
@@ -17,13 +16,12 @@ import (
 var (
 	// BaseURL is the base url of gost api services
 	BaseURL = "https://iuao0sjxmi.execute-api.ap-southeast-1.amazonaws.com/development/"
-	//BaseURL = "http://localhost:9393/"
 	// WebURL is the base url of gost web services
 	WebURL = "https://gost.zcong.moe/#/gost/"
-	//WebURL = "http://localhost:3000/#/gost/"
 	space = "  "
 	// MaxSize is single file max size, 10k
 	MaxSize      = int64(1024 * 10)
+	// MaxSizeHuman is max size for human
 	MaxSizeHuman = humanize.Bytes(uint64(MaxSize))
 )
 
@@ -117,5 +115,5 @@ func GetPathStat(p string) *PathStat {
 }
 
 func errFileTooBig(s int64) error {
-	return errors.New(fmt.Sprintf("File is too big %s, max allowed size is %s.", humanize.Bytes(uint64(s)), MaxSizeHuman))
+	return fmt.Errorf("File is too big %s, max allowed size is %s ", humanize.Bytes(uint64(s)), MaxSizeHuman)
 }
