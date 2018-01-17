@@ -15,11 +15,9 @@ import (
 
 var (
 	// BaseURL is the base url of gost api services
-	BaseURL = "https://iuao0sjxmi.execute-api.ap-southeast-1.amazonaws.com/development/"
-	//BaseURL = "http://localhost:9393/"
-
+	BaseURL = GetEnvOrDefault("GOSTBASEURL", "https://iuao0sjxmi.execute-api.ap-southeast-1.amazonaws.com/development/")
 	// WebURL is the base url of gost web services
-	WebURL = "https://gost.zcong.moe/#/gost/"
+	WebURL = GetEnvOrDefault("GOSTWEBURL", "https://gost.zcong.moe/#/gost/")
 	space  = "  "
 	// MaxSize is single file max size, 10k
 	MaxSize = int64(1024 * 10)
@@ -53,6 +51,15 @@ func init() {
 		os.Exit(1)
 	}
 	ConfigFile = path.Join(home, config)
+}
+
+// GetEnvOrDefault return a env value or a default if not exists
+func GetEnvOrDefault(key, d string) string {
+	v := os.Getenv(key)
+	if v == "" {
+		return d
+	}
+	return v
 }
 
 // WriteConfig write token to config file
