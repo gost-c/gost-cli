@@ -123,3 +123,17 @@ func GetPathStat(p string) *PathStat {
 func errFileTooBig(s int64) error {
 	return fmt.Errorf("File is too big %s, max allowed size is %s ", humanize.Bytes(uint64(s)), MaxSizeHuman)
 }
+
+// Pad helper.
+func Pad() func() {
+	println()
+	return func() {
+		println()
+	}
+}
+
+// LogPad outputs a log message with padding.
+func LogPad(msg string) {
+	defer Pad()()
+	fmt.Println(msg)
+}

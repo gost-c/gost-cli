@@ -8,6 +8,7 @@ import (
 	"github.com/gost-c/gost-cli/commands/login"
 	"github.com/gost-c/gost-cli/commands/push"
 	"github.com/gost-c/gost-cli/commands/register"
+	"github.com/gost-c/gost-cli/utils"
 	"gopkg.in/alecthomas/kingpin.v2"
 	"os"
 )
@@ -63,9 +64,9 @@ func main() {
 }
 
 func showVersion() {
-	version := fmt.Sprintf("\n%s version %s", colors.Cyan(app.Name), colors.Purple(Version))
+	version := fmt.Sprintf("%s version %s", colors.Cyan(app.Name), colors.Purple(Version))
 	if len(GitCommit) != 0 {
 		version += colors.Gray(fmt.Sprintf(" (%s)", GitCommit))
 	}
-	fmt.Println(version)
+	utils.LogPad(version)
 }

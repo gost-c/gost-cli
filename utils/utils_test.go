@@ -8,3 +8,7 @@ import (
 func TestFileOrFolder(t *testing.T) {
 	t.Log(utils.GetPathStat("../circle.yml"))
 }
+
+func TestLogPad(t *testing.T) {
+	utils.LogPad("cdcdxsxs")
+}
