@@ -8,14 +8,13 @@ import (
 	"github.com/gost-c/gost-cli/commands/login"
 	"github.com/gost-c/gost-cli/commands/push"
 	"github.com/gost-c/gost-cli/commands/register"
+	"github.com/gost-c/gost-cli/commands/upgrade"
 	"github.com/gost-c/gost-cli/utils"
 	"gopkg.in/alecthomas/kingpin.v2"
 	"os"
 )
 
 var (
-	// Version is app version
-	Version = "v3.1.0"
 	// GitCommit is commit hash for version
 	GitCommit = ""
 )
@@ -43,6 +42,9 @@ var (
 	deleteCmd = app.Command("delete", "Delete a gost you published.")
 	id        = deleteCmd.Arg("id", "Gost id you want to delete.").Required().String()
 
+	upgradeCmd = app.Command("upgrade", "Upgrade gost cli.")
+	target     = upgradeCmd.Flag("target", "Upgrade to the specified version.").Short('t').String()
+
 	version = app.Command("version", "Show gost cli version.")
 )
 
@@ -60,11 +62,13 @@ func main() {
 		del.Run(*id)
 	case version.FullCommand():
 		showVersion()
+	case upgradeCmd.FullCommand():
+		upgrade.Run(*target)
 	}
 }
 
 func showVersion() {
-	version := fmt.Sprintf("%s version %s", colors.Cyan(app.Name), colors.Purple(Version))
+	version := fmt.Sprintf("%s version %s", colors.Cyan(app.Name), colors.Purple(utils.Version))
 	if len(GitCommit) != 0 {
 		version += colors.Gray(fmt.Sprintf(" (%s)", GitCommit))
 	}

@@ -14,6 +14,8 @@ import (
 )
 
 var (
+	// Version is app version
+	Version = "v3.2.0"
 	// BaseURL is the base url of gost api services
 	BaseURL = GetEnvOrDefault("GOSTBASEURL", "https://iuao0sjxmi.execute-api.ap-southeast-1.amazonaws.com/development/")
 	// WebURL is the base url of gost web services
@@ -143,4 +145,14 @@ func Pad() func() {
 func LogPad(msg string) {
 	defer Pad()()
 	fmt.Println(msg)
+}
+
+// LogErrPad outputs error message with color and pad
+func LogErrPad(err error) {
+	LogPad(colors.Red("ERROR") + space + colors.Purple(err.Error()))
+}
+
+// LogErrPad outputs success message with color and pad
+func LogSuccessPad(msg string) {
+	LogPad(colors.Green("SUCCESS") + space + msg)
 }
