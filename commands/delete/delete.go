@@ -11,14 +11,14 @@ var url = utils.BaseURL + "api/gost/"
 
 // Run is sub command runner for register
 func Run(id string) {
-	token, err := utils.ReadConfig()
-	if err != nil || token == nil {
+	token := utils.GetToken()
+	if token == "" {
 		utils.Fail("Get token failed, please login first")
 		return
 	}
 	url += id
 	var res commands.Result
-	err = utils.DoRequest(http.MethodDelete, url, &res, map[string]string{"Authorization": "Bearer " + string(token)})
+	err := utils.DoRequest(http.MethodDelete, url, &res, map[string]string{"Authorization": "Bearer " + token})
 	if err != nil {
 		utils.Fail(fmt.Sprintf("Unexpected error occurred: %s, make sure you have logged in", err.Error()))
 		return

@@ -20,8 +20,7 @@ var (
 )
 
 var (
-	app = kingpin.New("gost", "Command line tool for gost.")
-
+	app              = kingpin.New("gost", "Command line tool for gost.")
 	registerCmd      = app.Command("register", "Register a account.")
 	registerUsername = registerCmd.Flag("username", "Account username.").Short('u').Required().String()
 	registerPassword = registerCmd.Flag("password", "Account password.").Short('p').Required().String()

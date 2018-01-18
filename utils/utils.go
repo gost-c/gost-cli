@@ -15,7 +15,7 @@ import (
 
 var (
 	// Version is app version
-	Version = "v3.2.0"
+	Version = "v3.2.1"
 	// BaseURL is the base url of gost api services
 	BaseURL = GetEnvOrDefault("GOSTBASEURL", "https://iuao0sjxmi.execute-api.ap-southeast-1.amazonaws.com/development/")
 	// WebURL is the base url of gost web services
@@ -29,6 +29,8 @@ var (
 	MaxFilesCount = 10
 	// ErrMaxFilesCount is error message for too many files
 	ErrMaxFilesCount = fmt.Errorf("More than %d files is not allowed ", MaxFilesCount)
+	// store for test inject
+	token string
 )
 
 // PathStat is file stat
@@ -76,16 +78,23 @@ func ReadConfig() ([]byte, error) {
 
 // Success log success message with colors
 func Success(str string) {
-	fmt.Println()
+	println()
 	fmt.Printf("%s%s%s", colors.Green("SUCCESS"), space, str)
-	fmt.Println()
+	println()
 }
 
 // Fail log error message with colors
 func Fail(str string) {
-	fmt.Println()
+	println()
 	fmt.Printf("%s%s%s", colors.Red("ERROR"), space, str)
-	fmt.Println()
+	println()
+}
+
+// Info log info message with colors
+func Info(str string) {
+	println()
+	fmt.Printf("%s%s%s", colors.Cyan("INFO"), space, str)
+	println()
 }
 
 // DoRequest do a http request and decode the json response
@@ -155,4 +164,35 @@ func LogErrPad(err error) {
 // LogErrPad outputs success message with color and pad
 func LogSuccessPad(msg string) {
 	LogPad(colors.Green("SUCCESS") + space + msg)
+}
+
+// GetToken get token from config file, env or debug token store
+func GetToken() string {
+	var tk string
+	var info string
+	// config file
+	bt, err := ReadConfig()
+	if err == nil {
+		tk = string(bt)
+		info = "Use token from config file. "
+	}
+	// env
+	if t := os.Getenv("TOKEN"); t != "" {
+		tk = t
+		info = "Use token from env. "
+	}
+	// debug
+	if token != "" {
+		tk = token
+		info = "Use token from debug store. "
+	}
+	if info != "" {
+		Info(info)
+	}
+	return tk
+}
+
+// SetToken set token to debug store, only for debug
+func SetToken(tk string) {
+	token = tk
 }

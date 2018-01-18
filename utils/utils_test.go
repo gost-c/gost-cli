@@ -12,3 +12,7 @@ func TestFileOrFolder(t *testing.T) {
 func TestLogPad(t *testing.T) {
 	utils.LogPad("cdcdxsxs")
 }
+
+func TestGetToken(t *testing.T) {
+	t.Log(utils.GetToken())
+}

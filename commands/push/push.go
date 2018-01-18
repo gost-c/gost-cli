@@ -39,14 +39,14 @@ func Run(files []string, description string) {
 // PushGost make actully post request
 func PushGost(f []File, description string) {
 	gost := Gost{Public: true, Description: description, Files: f}
-	token, err := utils.ReadConfig()
-	if err != nil || token == nil {
+	token := utils.GetToken()
+	if token == "" {
 		utils.Fail("Get token failed, please login first")
 		return
 	}
 
 	var res commands.Result
-	err = u.PostJSON(url, gost, &res, map[string]string{"Authorization": "Bearer " + string(token)})
+	err := u.PostJSON(url, gost, &res, map[string]string{"Authorization": "Bearer " + token})
 	if err != nil {
 		utils.Fail(fmt.Sprintf("Unexpected error occurred: %s, make sure you have logged in", err.Error()))
 		return
