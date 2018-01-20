@@ -12,8 +12,12 @@ import (
 )
 
 // Run is sub command runner for push
-func Run(path string, description string, notIgnoreFolder bool) {
-	f, err := GetFiles(path, notIgnoreFolder)
+func Run(path string, description string, notIgnoreFolder bool, ignores []string) {
+	if len(ignores) == 0 {
+		ignores = utils.DefaultIgnoreFolders
+	}
+	fmt.Println(ignores)
+	f, err := GetFiles(path, notIgnoreFolder, ignores)
 	if err != nil {
 		utils.Fail(fmt.Sprintf("Parse files error: %s", colors.Red(err.Error())))
 		return
@@ -22,13 +26,18 @@ func Run(path string, description string, notIgnoreFolder bool) {
 }
 
 // GetFiles get files from path
-func GetFiles(path string, notIgnoreFolder bool) ([]push.File, error) {
+func GetFiles(path string, notIgnoreFolder bool, ignores []string) ([]push.File, error) {
 	var fs []push.File
-
+	igf := utils.ToMap(ignores)
+	igfiles := utils.ToMap(utils.DefaultIgnoreFiles)
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if info.IsDir() {
 			if isHiddenPath(path) && !notIgnoreFolder {
 				fmt.Printf("%s Skip hidden folder: %15s\n", colors.Blue("-->"), colors.Red(path))
+				return filepath.SkipDir
+			}
+			if _, ok := igf[path]; ok {
+				fmt.Printf("%s Skip folder: %15s\n", colors.Blue("-->"), colors.Red(path))
 				return filepath.SkipDir
 			}
 			fmt.Printf("%s Parse folder: %15s\n", colors.Blue("-->"), colors.Purple(path))
@@ -46,8 +55,13 @@ func GetFiles(path string, notIgnoreFolder bool) ([]push.File, error) {
 			Filename: path,
 			Content:  string(content),
 		}
+		_, shouldIgnore := igfiles[info.Name()]
 
-		fs = append(fs, f)
+		if f.Content != "" && !shouldIgnore {
+			fs = append(fs, f)
+		} else {
+			fmt.Printf("%s Skip file: %15s\n", colors.Blue("-->"), colors.Red(path))
+		}
 
 		return nil
 	})

@@ -33,6 +33,18 @@ var (
 	token string
 )
 
+// DefaultIgnoreFolders is default ignore folders name for folder sub command
+var DefaultIgnoreFolders = []string{
+	"node_modules",
+	"vendor",
+	"bin",
+}
+
+// DefaultIgnoreFiles is default ignore file name for folder sub command
+var DefaultIgnoreFiles = []string{
+	".DS_Store",
+}
+
 // PathStat is file stat
 type PathStat struct {
 	// Error is error message
@@ -195,4 +207,13 @@ func GetToken() string {
 // SetToken set token to debug store, only for debug
 func SetToken(tk string) {
 	token = tk
+}
+
+// ToMap returns a map from slice.
+func ToMap(s []string) map[string]struct{} {
+	m := make(map[string]struct{})
+	for _, v := range s {
+		m[v] = struct{}{}
+	}
+	return m
 }

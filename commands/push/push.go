@@ -84,7 +84,12 @@ func getFiles(files []string) ([]File, error) {
 		if count > utils.MaxFilesCount {
 			return nil, utils.ErrMaxFilesCount
 		}
-		results = append(results, File{path.Base(file), string(content)})
+
+		if string(content) != "" {
+			results = append(results, File{path.Base(file), string(content)})
+		} else {
+			fmt.Printf("%s Skip empty file: %15s\n", colors.Blue("-->"), colors.Red(file))
+		}
 	}
 	return results, nil
 }
