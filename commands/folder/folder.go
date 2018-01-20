@@ -16,7 +16,6 @@ func Run(path string, description string, notIgnoreFolder bool, ignores []string
 	if len(ignores) == 0 {
 		ignores = utils.DefaultIgnoreFolders
 	}
-	fmt.Println(ignores)
 	f, err := GetFiles(path, notIgnoreFolder, ignores)
 	if err != nil {
 		utils.Fail(fmt.Sprintf("Parse files error: %s", colors.Red(err.Error())))
