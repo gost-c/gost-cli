@@ -63,7 +63,7 @@
   branch = "master"
   name = "github.com/google/go-github"
   packages = ["github"]
-  revision = "922ceac0585d40f97d283d921f872fc50480e06e"
+  revision = "b1f138353a6287df5156971b3963e9107eca06a1"
 
 [[projects]]
   branch = "master"
@@ -123,6 +123,12 @@
   revision = "b8bc1bf767474819792c23f32d8286a45736f1c6"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/pkg/browser"
+  packages = ["."]
+  revision = "c90ca0c84f15f81c982e32665bffd8d7aac8f097"
+
+[[projects]]
   name = "github.com/pkg/errors"
   packages = ["."]
   revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
@@ -142,7 +148,7 @@
     "stores/github"
   ]
   revision = "a963589e45a4db03407f81ef8ae6ec1995a08f62"
-  version = "v2.1.0"
+  version = "v2.2.1"
 
 [[projects]]
   name = "github.com/ulikunitz/xz"
@@ -165,7 +171,7 @@
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "fff93fa7cd278d84afc205751523809c464168ab"
+  revision = "ef802241c90f84d84d644a2d8d0de8ee96038c9c"
 
 [[projects]]
   name = "gopkg.in/alecthomas/kingpin.v2"
@@ -176,6 +182,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "28f76d8c79e58ed104c76354ebe6cf72c037be708300489c1300104cfde2f1ac"
+  inputs-digest = "a6b7ce7c94e76015845f8055ad45ea6c8fc7600382b2373af9b27827077c6f9a"
   solver-name = "gps-cdcl"
   solver-version = 1
