@@ -10,9 +10,15 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "Gopkg.lock" }}
       - run:
           name: get deps
           command: make install.dev
+      - save_cache:
+          paths:
+            - vendor
+          key: dependency-cache-{{ checksum "Gopkg.lock" }}
       - run:
           name: build
           command: make build
@@ -25,9 +31,15 @@ jobs:
 
       steps:
         - checkout
+        - restore_cache:
+            key: dependency-cache-{{ checksum "Gopkg.lock" }}
         - run:
             name: get deps
             command: make install.dev
+        - save_cache:
+            paths:
+              - vendor
+            key: dependency-cache-{{ checksum "Gopkg.lock" }}
         - run:
             name: build
             command: make release
