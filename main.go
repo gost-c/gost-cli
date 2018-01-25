@@ -9,6 +9,7 @@ import (
 	"github.com/gost-c/gost-cli/commands/push"
 	"github.com/gost-c/gost-cli/commands/register"
 	"github.com/gost-c/gost-cli/commands/upgrade"
+	"github.com/gost-c/gost-cli/commands/url"
 	"github.com/gost-c/gost-cli/utils"
 	"gopkg.in/alecthomas/kingpin.v2"
 	"os"
@@ -45,6 +46,9 @@ var (
 	upgradeCmd = app.Command("upgrade", "Upgrade gost cli.")
 	target     = upgradeCmd.Flag("target", "Upgrade to the specified version.").Short('t').String()
 
+	urlCmd = app.Command("url", "Get gost website url.")
+	open   = urlCmd.Flag("open", "Open browser").Bool()
+
 	version = app.Command("version", "Show gost cli version.")
 )
 
@@ -64,6 +68,8 @@ func main() {
 		showVersion()
 	case upgradeCmd.FullCommand():
 		upgrade.Run(*target)
+	case urlCmd.FullCommand():
+		url.Run(*open)
 	}
 }
 

@@ -15,7 +15,7 @@ import (
 
 var (
 	// Version is app version
-	Version = "v3.2.2"
+	Version = "v3.2.3"
 	// BaseURL is the base url of gost api services
 	BaseURL = GetEnvOrDefault("GOSTBASEURL", "https://iuao0sjxmi.execute-api.ap-southeast-1.amazonaws.com/development/")
 	// WebURL is the base url of gost web services
