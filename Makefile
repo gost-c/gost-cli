@@ -2,16 +2,17 @@ GO ?= go
 
 build:
 	@echo "====> Build gost"
-	@goreleaser --skip-publish --rm-dist --snapshot
+	@retool do goreleaser --skip-publish --rm-dist --snapshot
 .PHONY: build
 
 install.dev:
-	@$(GO) get -u github.com/golang/dep/cmd/dep
-	@$(GO) get -u github.com/goreleaser/goreleaser
-	@dep ensure -v
+	@$(GO) get github.com/twitchtv/retool
+	@retool add github.com/golang/dep/cmd/dep origin/master
+	@retool add github.com/goreleaser/goreleaser v0.45.1
+	@retool do dep ensure -v
 .PHONY: install.dev
 
 release:
 	@echo "====> Build and release"
-	@goreleaser
+	@retool do goreleaser
 .PHONY: release
