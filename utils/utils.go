@@ -15,14 +15,14 @@ import (
 
 var (
 	// Version is app version
-	Version = "v3.2.3"
+	Version = "v3.2.4"
 	// BaseURL is the base url of gost api services
 	BaseURL = GetEnvOrDefault("GOSTBASEURL", "https://iuao0sjxmi.execute-api.ap-southeast-1.amazonaws.com/development/")
 	// WebURL is the base url of gost web services
 	WebURL = GetEnvOrDefault("GOSTWEBURL", "https://gost.zcong.moe/#/gost/")
 	space  = "  "
-	// MaxSize is single file max size, 10k
-	MaxSize = int64(1024 * 10)
+	// MaxSize is single file max size, 30k
+	MaxSize = int64(1024 * 30)
 	// MaxSizeHuman is max size for human
 	MaxSizeHuman = humanize.Bytes(uint64(MaxSize))
 	// MaxFilesCount is max files count allowed
