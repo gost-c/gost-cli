@@ -6,6 +6,7 @@ import (
 	del "github.com/gost-c/gost-cli/commands/delete"
 	"github.com/gost-c/gost-cli/commands/folder"
 	"github.com/gost-c/gost-cli/commands/login"
+	"github.com/gost-c/gost-cli/commands/logout"
 	"github.com/gost-c/gost-cli/commands/push"
 	"github.com/gost-c/gost-cli/commands/register"
 	"github.com/gost-c/gost-cli/commands/upgrade"
@@ -49,6 +50,8 @@ var (
 	urlCmd = app.Command("url", "Get gost website url.")
 	open   = urlCmd.Flag("open", "Open browser").Bool()
 
+	logoutCmd = app.Command("logout", "Logout your account.")
+
 	version = app.Command("version", "Show gost cli version.")
 )
 
@@ -70,6 +73,8 @@ func main() {
 		upgrade.Run(*target)
 	case urlCmd.FullCommand():
 		url.Run(*open)
+	case logoutCmd.FullCommand():
+		logout.Run()
 	}
 }
 
