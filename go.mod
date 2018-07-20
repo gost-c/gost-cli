@@ -1,0 +1,30 @@
+module github.com/gost-c/gost-cli
+
+require (
+	github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc
+	github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf
+	github.com/apex/log v1.0.0
+	github.com/aybabtme/rgbterm v0.0.0-20170906152045-cc83f3b3ce59
+	github.com/buger/goterm v0.0.0-20171130051405-ef0fa5b75d0f
+	github.com/c4milo/unpackit v0.0.0-20170704181138-4ed373e9ef1c
+	github.com/dsnet/compress v0.0.0-20171208185109-cc9eb1d7ad76
+	github.com/dustin/go-humanize v0.0.0-20171111073723-bb3d318650d4
+	github.com/google/go-github v0.0.0-20180123235826-b1f138353a62
+	github.com/google/go-querystring v0.0.0-20170111101155-53e6ce116135
+	github.com/gosuri/uilive v0.0.0-20170323041506-ac356e6e42cd
+	github.com/gosuri/uiprogress v0.0.0-20170224063937-d0567a9d84a1
+	github.com/klauspost/compress v1.2.1
+	github.com/klauspost/cpuid v0.0.0-20170728055534-ae7887de9fa5
+	github.com/klauspost/crc32 v0.0.0-20161016154125-cb6bfca970f6
+	github.com/klauspost/pgzip v0.0.0-20170402124221-0bf5dcad4ada
+	github.com/mattn/go-isatty v0.0.3
+	github.com/mitchellh/go-homedir v0.0.0-20161203194507-b8bc1bf76747
+	github.com/pkg/browser v0.0.0-20170505125900-c90ca0c84f15
+	github.com/pkg/errors v0.8.0
+	github.com/tj/go v1.6.1
+	github.com/tj/go-update v2.2.1+incompatible
+	github.com/ulikunitz/xz v0.5.4
+	github.com/zcong1993/utils v0.0.0-20170620050937-166641bf551a
+	golang.org/x/sys v0.0.0-20180125080817-ef802241c90f
+	gopkg.in/alecthomas/kingpin.v2 v2.2.6
+)
