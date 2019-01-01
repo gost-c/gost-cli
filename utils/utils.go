@@ -17,7 +17,7 @@ var (
 	// Version is app version
 	Version = "v3.2.5"
 	// BaseURL is the base url of gost api services
-	BaseURL = GetEnvOrDefault("GOSTBASEURL", "https://iuao0sjxmi.execute-api.ap-southeast-1.amazonaws.com/development/")
+	BaseURL = GetEnvOrDefault("GOSTBASEURL", "https://api.gost.zcong.me/")
 	// WebURL is the base url of gost web services
 	WebURL = GetEnvOrDefault("GOSTWEBURL", "https://gost.zcong.moe/#/gost/")
 	space  = "  "

@@ -4,42 +4,20 @@ jobs:
   build:
     docker:
       # CircleCI Go images available at: https://hub.docker.com/r/circleci/golang/
-      - image: circleci/golang:1.9
-
-    working_directory: /go/src/github.com/gost-c/gost-cli
+      - image: circleci/golang:1.11
 
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "Gopkg.lock" }}
-      - run:
-          name: get deps
-          command: make install.dev
-      - save_cache:
-          paths:
-            - vendor
-          key: dependency-cache-{{ checksum "Gopkg.lock" }}
       - run:
           name: build
           command: make build
   release:
       docker:
         # CircleCI Go images available at: https://hub.docker.com/r/circleci/golang/
-        - image: circleci/golang:1.9
-
-      working_directory: /go/src/github.com/gost-c/gost-cli
+        - image: circleci/golang:1.11
 
       steps:
         - checkout
-        - restore_cache:
-            key: dependency-cache-{{ checksum "Gopkg.lock" }}
-        - run:
-            name: get deps
-            command: make install.dev
-        - save_cache:
-            paths:
-              - vendor
-            key: dependency-cache-{{ checksum "Gopkg.lock" }}
         - run:
             name: build
             command: make release
